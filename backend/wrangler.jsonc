@@ -1,0 +1,40 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "backend",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-10-23",
+  // "compatibility_flags": [
+  //   "nodejs_compat"
+  // ],
+  "vars": {
+    "DATABASE_URL": "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RfaWQiOjEsInNlY3VyZV9rZXkiOiJza180Y0V3Ym12MU44X1c3bFV6MjBwdTYiLCJhcGlfa2V5IjoiMDFLODdONDEzS1c0RFpDNERHQkhBQlpCNDgiLCJ0ZW5hbnRfaWQiOiJhNmY4ZDVhM2RiODFlNWRkZmI3YjZhOWExODBjNTA4NTViMjMxNmU4MjczNzQzMDhlMzNkYTBiNWRmOGI2ZDE0IiwiaW50ZXJuYWxfc2VjcmV0IjoiOGU2MWNjN2EtMDAxOC00ZGFjLWI2YzktZWU3YTVkOTUwM2YwIn0.xq2cE2Kidf_IJvuoCcXjYDeoPH4YsWYGwkBCrmOprJg",
+    "SECRET_KEY" : "this is my secret key",
+    "DIRECT_URL" : "prisma+postgresql://neondb_owner:npg_HC5Kbe8SJxpO@ep-snowy-butterfly-adya7fxu-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+  },
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "MY_KV_NAMESPACE",
+  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  //   }
+  // ],
+  // "r2_buckets": [
+  //   {
+  //     "binding": "MY_BUCKET",
+  //     "bucket_name": "my-bucket"
+  //   }
+  // ],
+  // "d1_databases": [
+  //   {
+  //     "binding": "MY_DB",
+  //     "database_name": "my-database",
+  //     "database_id": ""
+  //   }
+  // ],
+  // "ai": {
+  //   "binding": "AI"
+  // },
+  // "observability": {
+  //   "enabled": true,
+  //   "head_sampling_rate": 1
+  // }
+}
