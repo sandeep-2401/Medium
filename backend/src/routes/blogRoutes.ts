@@ -2,6 +2,7 @@ import { Hono } from "hono"
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { verify } from "hono/jwt"
+import { createBlogInput,updateBlogInput} from "@sandeep2401/comman";
 
 const blogRouter = new Hono<{
 	Bindings: {
@@ -38,6 +39,12 @@ blogRouter.post('/', async (c) =>{
     }).$extends(withAccelerate())
 
     const body = await c.req.json()
+    const {success} = createBlogInput.safeParse(body);
+        if(!success) {
+          c.json({
+            msg : "invalid input type"
+          },411)
+        }
     const post = await prisma.post.create({
       data : {
         title : body.title,
@@ -69,6 +76,13 @@ blogRouter.put('/', async(c) =>{
 
     const body = await c.req.json()
 
+    const {success} = updateBlogInput.safeParse(body);
+        if(!success) {
+          c.json({
+            msg : "invalid input type"
+          },411)
+        }
+
     const updateData: any = {}
     if (body.title) updateData.title = body.title
     if (body.content) updateData.content = body.content
@@ -95,6 +109,23 @@ blogRouter.put('/', async(c) =>{
   }
 })
 
+blogRouter.get('/bulk', async (c) =>{
+  const prisma = new PrismaClient({
+    datasourceUrl : c.env?.DATABASE_URL
+  }).$extends(withAccelerate())
+
+  try{  
+    const posts = await prisma.post.findMany({})
+    return c.json(posts)
+  }
+  catch(e:any){
+    c.json({
+      msg : "error fetching blogs",
+      err : e.message
+    })
+  }
+})  
+
 blogRouter.get('/:id', async(c) =>{
   try{
     const id = c.req.param('id');
@@ -115,23 +146,6 @@ blogRouter.get('/:id', async(c) =>{
   catch(e : any){
     return c.json({
       msg : "error fetching the post",
-      err : e.message
-    })
-  }
-})
-
-blogRouter.get('/bulk', async (c) =>{
-  const prisma = new PrismaClient({
-    datasourceUrl : c.env?.DATABASE_URL
-  }).$extends(withAccelerate())
-
-  try{  
-    const posts = await prisma.post.findMany({})
-    return c.json(posts)
-  }
-  catch(e:any){
-    c.json({
-      msg : "error fetching blogs",
       err : e.message
     })
   }
