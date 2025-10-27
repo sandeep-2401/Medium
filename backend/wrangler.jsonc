@@ -7,9 +7,9 @@
   //   "nodejs_compat"
   // ],
   "vars": {
-    "DATABASE_URL": "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RfaWQiOjEsInNlY3VyZV9rZXkiOiJza180Y0V3Ym12MU44X1c3bFV6MjBwdTYiLCJhcGlfa2V5IjoiMDFLODdONDEzS1c0RFpDNERHQkhBQlpCNDgiLCJ0ZW5hbnRfaWQiOiJhNmY4ZDVhM2RiODFlNWRkZmI3YjZhOWExODBjNTA4NTViMjMxNmU4MjczNzQzMDhlMzNkYTBiNWRmOGI2ZDE0IiwiaW50ZXJuYWxfc2VjcmV0IjoiOGU2MWNjN2EtMDAxOC00ZGFjLWI2YzktZWU3YTVkOTUwM2YwIn0.xq2cE2Kidf_IJvuoCcXjYDeoPH4YsWYGwkBCrmOprJg",
+    "DATABASE_URL": "YOUR PRISMA ACCELERATE URL",
     "SECRET_KEY" : "this is my secret key",
-    "DIRECT_URL" : "prisma+postgresql://neondb_owner:npg_HC5Kbe8SJxpO@ep-snowy-butterfly-adya7fxu-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+    "DIRECT_URL" : "YOUR DB URL"
   },
   // "kv_namespaces": [
   //   {
