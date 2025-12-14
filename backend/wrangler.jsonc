@@ -6,11 +6,7 @@
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
-  "vars": {
-    "DATABASE_URL": "YOUR PRISMA ACCELERATE URL",
-    "SECRET_KEY" : "this is my secret key",
-    "DIRECT_URL" : "YOUR DB URL"
-  },
+
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",

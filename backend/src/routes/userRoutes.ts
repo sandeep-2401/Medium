@@ -47,7 +47,7 @@ userRouter.post('/signin', async (c) => {
     const body = await c.req.json();
     const {success} =signinInput.safeParse(body);
     if(!success) {
-      c.json({
+      return c.json({
         msg : "invalid input type"
       },411)
     }
