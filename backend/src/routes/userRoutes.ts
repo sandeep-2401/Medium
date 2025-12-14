@@ -11,6 +11,20 @@ export const userRouter = new Hono<{
     }
 }>();
 
+userRouter.use('/*', async (c, next) => {
+    c.header("Access-Control-Allow-Origin", "*");
+    c.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    c.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+    // Handle preflight request
+    if (c.req.method === "OPTIONS") {
+        return c.text("OK");
+    }
+
+    await next();
+});
+
+
 userRouter.post('/signup', async (c) => {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
