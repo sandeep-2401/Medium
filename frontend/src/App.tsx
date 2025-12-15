@@ -3,6 +3,7 @@ import { Signup } from './pages/Signup.tsx'
 import { Signin } from './pages/Signin.tsx'
 import { BlogFeed } from './pages/Blogfeed.tsx'
 import { BlogPage } from './pages/Blogpage.tsx'
+import { WriteBlog } from './pages/WriteBlog.tsx'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/blogs" element={<BlogFeed />} />
           <Route path="/blog/:id" element={<BlogPage />} />
+          <Route path="/write" element={<WriteBlog />} />
         </Routes>
       </BrowserRouter>
     </>

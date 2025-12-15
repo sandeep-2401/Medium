@@ -38,7 +38,6 @@ blogRouter.use('/*', async (c, next) => {
 
   if (!response.id) return c.json({ error: "unauthorized" }, 403);
   c.set("userId", response.id);
-
   await next();
 });
 
@@ -90,7 +89,7 @@ blogRouter.put('/', async(c) =>{
 
     const {success} = updateBlogInput.safeParse(body);
         if(!success) {
-          c.json({
+          return c.json({
             msg : "invalid input type"
           },411)
         }
@@ -98,8 +97,15 @@ blogRouter.put('/', async(c) =>{
     const updateData: any = {}
     if (body.title) updateData.title = body.title
     if (body.content) updateData.content = body.content
+    
+    if (Object.keys(updateData).length === 0) {
+      return c.json(
+        { msg: "No fields to update" },
+        400
+      );
+    }
 
-    const post = await prisma.post.update({
+    const post = await prisma.post.updateMany({
       where : {
         id : body.id,
         authorId : userId
@@ -107,9 +113,17 @@ blogRouter.put('/', async(c) =>{
       data : updateData
     })
 
+    if (post.count === 0) {
+      return c.json(
+        { msg: "Post not found or unauthorized" },
+        403
+      );
+    }
+
+
     return c.json({
       msg : "post has been updated successfully",
-      postId : post.id,
+      postId : body.id,
       authorId : userId
     })
   }
@@ -141,6 +155,7 @@ blogRouter.get('/bulk', async (c) =>{
 blogRouter.get('/:id', async(c) =>{
   try{
     const id = c.req.param('id');
+    const userId = c.get("userId")
 
     const prisma = new PrismaClient({
       datasourceUrl : c.env?.DATABASE_URL

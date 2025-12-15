@@ -48,7 +48,8 @@ userRouter.post('/signup', async (c) => {
     const token = await sign({ id: user.id }, c.env.SECRET_KEY)
   
     return c.json({
-      jwt: token
+      jwt: token,
+      userId: user.id,
     })
 })
   
@@ -78,5 +79,8 @@ userRouter.post('/signin', async (c) => {
     }
 
     const jwt = await sign({ id: user.id }, c.env.SECRET_KEY);
-    return c.json({ jwt });
+    return c.json({ 
+      jwt,
+      userId: user.id,
+     });
 })
