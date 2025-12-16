@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
 import { sign } from "hono/jwt";
-import { signupInput,signinInput,createBlogInput,updateBlogInput} from "@sandeep2401/comman";
+import { signupInput,signinInput,} from "@sandeep2401/comman";
 
 export const userRouter = new Hono<{
     Bindings: {
@@ -16,7 +16,6 @@ userRouter.use('/*', async (c, next) => {
     c.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     c.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-    // Handle preflight request
     if (c.req.method === "OPTIONS") {
         return c.text("OK");
     }
@@ -84,3 +83,5 @@ userRouter.post('/signin', async (c) => {
       userId: user.id,
      });
 })
+
+

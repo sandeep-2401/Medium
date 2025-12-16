@@ -84,9 +84,7 @@ export const BlogPage = () => {
               title={blog.title}
               createdAt={blog.createdAt}
             />
-            <div>
-                hi
-            </div>
+
               {isOwner && (
                 <Link
                     to={`/blog/${blog.id}/edit`}
