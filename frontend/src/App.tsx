@@ -8,8 +8,7 @@ import { EditBlog } from './pages/EditBlog.tsx'
 import { FloatingWriteButton } from './components/FloatingButton.tsx'
 import { MyBlogs } from './pages/MyBlogs.tsx'
 import { Header } from './components/Header.tsx'
-import { ProtectedRoute } from "./pages/ProtectedRoute";
-
+import { ProtectedRoute } from './pages/ProtectedRoutes.tsx'
 function App() {
 
   return (
