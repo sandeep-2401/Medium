@@ -8,6 +8,8 @@ import { EditBlog } from './pages/EditBlog.tsx'
 import { FloatingWriteButton } from './components/FloatingButton.tsx'
 import { MyBlogs } from './pages/MyBlogs.tsx'
 import { Header } from './components/Header.tsx'
+import { ProtectedRoute } from "./pages/ProtectedRoute";
+
 function App() {
 
   return (
@@ -17,11 +19,20 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
-          <Route path="/blogs" element={<BlogFeed />} />
+          <Route path="/blogs" element={ 
+            <ProtectedRoute>
+              <BlogFeed />
+            </ProtectedRoute>
+          } />
           <Route path="/blog/:id" element={<BlogPage />} />
           <Route path="/write" element={<WriteBlog />} />
           <Route path="/blog/:id/edit" element={<EditBlog />} />
-          <Route path="/my-blogs" element={<MyBlogs />} />
+          <Route path="/my-blogs" element={
+            <ProtectedRoute>
+              <MyBlogs />
+            </ProtectedRoute>
+          }/>
+
         </Routes>
         <FloatingWriteButton/>
       </BrowserRouter>
