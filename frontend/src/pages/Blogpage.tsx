@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {  useParams } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import { ArticleHeader } from "../components/BlogHeader";
 import { ArticleContent } from "../components/BlogContent";
 import { AuthorSidebar } from "../components/AuthorSidebar";
@@ -88,14 +88,13 @@ export const BlogPage = () => {
                 hi
             </div>
               {isOwner && (
-                <button
-                className="text-sm text-gray-500 hover:text-black"
-                onClick={() => {
-                    console.log("Edit clicked");
-                }}
-                >
-                Edit
-                </button>
+                <Link
+                    to={`/blog/${blog.id}/edit`}
+                    className="text-sm text-gray-500 hover:text-black"
+                    >
+                    Edit
+                </Link>
+
             )}
 
           </div>
