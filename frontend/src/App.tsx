@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { Signup } from './pages/Signup.tsx'
 import { Signin } from './pages/Signin.tsx'
 import { BlogFeed } from './pages/Blogfeed.tsx'
@@ -16,6 +17,7 @@ function App() {
       <BrowserRouter>
       <Header/>
         <Routes>
+          <Route path="/" element={<Navigate to="/blogs" />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/blogs" element={ 
