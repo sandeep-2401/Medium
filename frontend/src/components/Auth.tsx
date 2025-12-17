@@ -1,8 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "./AuthContext";
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
   const navigate = useNavigate();
+  const { setToken } = useAuth();
+
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -37,10 +40,8 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
         throw new Error(data.message || "Something went wrong");
       }
 
-      // store token
-      localStorage.setItem("token", data.jwt);
+      setToken(data.jwt);
 
-      // redirect after login/signup
       navigate("/bulk");
     } catch (err: any) {
       setError(err.message);

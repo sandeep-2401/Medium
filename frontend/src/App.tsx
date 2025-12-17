@@ -10,10 +10,13 @@ import { FloatingWriteButton } from './components/FloatingButton.tsx'
 import { MyBlogs } from './pages/MyBlogs.tsx'
 import { Header } from './components/Header.tsx'
 import { ProtectedRoute } from './pages/ProtectedRoutes.tsx'
+import { AuthProvider } from './components/AuthContext.tsx'
+
 function App() {
 
   return (
     <>
+    <AuthProvider>
       <BrowserRouter>
       <Header/>
         <Routes>
@@ -37,6 +40,7 @@ function App() {
         </Routes>
         <FloatingWriteButton/>
       </BrowserRouter>
+      </AuthProvider>
     </>
   )
 }
