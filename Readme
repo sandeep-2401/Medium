@@ -1,0 +1,117 @@
+Ink — A Modern Full-Stack Blogging Platform
+
+Ink is a clean, minimal, and scalable blogging platform built with a real-world full-stack architecture.
+It enables users to authenticate securely, create and manage blogs, and read content through a fast, API-driven interface.
+
+Unlike typical tutorial projects, Ink focuses on production-style design decisions, edge deployment, and clear separation of concerns.
+
+🚀 Live Demo
+https://inkblogs.netlify.app/
+
+
+🧩 Core Features
+
+🔐 Authentication & Authorization
+
+Secure user signup and signin using JWT
+Token-based authentication via HTTP headers
+Protected routes for authenticated users
+Author-only access control for blog editing
+Clean logout flow via token removal
+
+✍️ Blogging System
+
+Create, edit, and read blog posts
+Author metadata displayed on each blog
+Individual blog pages with clean reading layout
+Global blog feed for content discovery
+
+📰 Blog Feed
+
+Displays all published blogs
+Designed for future personalization (followers, recommendations)
+API-driven rendering with proper loading states
+
+🎨 UI & Experience
+
+Minimal, reading-focused design
+Subtle, professional styling 
+Responsive layout
+Clear typography hierarchy
+
+
+🧠 What Makes This Project Strong (Beyond CRUD)
+
+Ink demonstrates how real applications are built, not just how CRUD works.
+This project includes:
+
+JWT-based authentication flow used in production systems
+Ownership-based authorization (only authors can edit their blogs)
+Shared schema validation between frontend and backend
+Edge-deployed backend for low latency
+Versioned API design (/api/v1)
+Clear separation of frontend, backend, and shared logic
+Scalable structure ready for new features
+
+
+🛠️ Tech Stack
+
+Frontend
+
+React
+TypeScript
+React Router
+Tailwind CSS
+Fetch API
+
+
+Backend
+
+Cloudflare Workers (Edge runtime)
+Hono framework
+Prisma (with Accelerate)
+PostgreSQL
+JWT authentication
+
+
+Shared
+
+Zod for schema validation
+Shared types between frontend & backend
+
+
+🔄 Authentication Flow (High-Level)
+
+User signs up or signs in
+Backend validates credentials
+JWT is issued and returned
+Token stored on client
+Token sent via Authorization: Bearer <token>
+Backend middleware verifies token for protected routes
+
+📡 API Overview
+
+User Routes:
+
+POST /api/v1/user/signup
+POST /api/v1/user/signin
+
+Blog Routes:
+
+POST /api/v1/blog
+PUT /api/v1/blog/:id
+GET /api/v1/blog/:id
+GET /api/v1/blog/bulk
+GET /api/v1/blog/me
+
+
+🔮 Planned Enhancements
+
+Follower-based personalized feed
+Blog cover images
+Drafts & autosave
+Comments and reactions
+Author profile pages
+Search and tags
+Pagination & infinite scrolling
+Token refresh strategy
