@@ -32,7 +32,7 @@ export const BlogCard = ({ blog }: { blog: BlogPost }) => {
         <div className="flex items-center justify-between text-sm text-slate-500">
           <div className="flex items-center gap-3">
             <span className="bg-slate-100 px-3 py-1 rounded-full text-slate-700">
-              Side Hustle
+              Technology
             </span>
             <span>3 min read</span>
           </div>

@@ -1,48 +1,96 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
-import { Signup } from './pages/Signup.tsx'
-import { Signin } from './pages/Signin.tsx'
-import { BlogFeed } from './pages/Blogfeed.tsx'
-import { BlogPage } from './pages/Blogpage.tsx'
-import { WriteBlog } from './pages/WriteBlog.tsx'
-import { EditBlog } from './pages/EditBlog.tsx'
-import { FloatingWriteButton } from './components/FloatingButton.tsx'
-import { MyBlogs } from './pages/MyBlogs.tsx'
-import { Header } from './components/Header.tsx'
-import { ProtectedRoute } from './pages/ProtectedRoutes.tsx'
-import { AuthProvider } from './components/AuthContext.tsx'
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 
-function App() {
+import { Signup } from "./pages/Signup";
+import { Signin } from "./pages/Signin";
+import { BlogFeed } from "./pages/Blogfeed";
+import { BlogPage } from "./pages/Blogpage";
+import { WriteBlog } from "./pages/WriteBlog";
+import { EditBlog } from "./pages/EditBlog";
+import { FloatingWriteButton } from "./components/FloatingButton";
+import { MyBlogs } from "./pages/MyBlogs";
+import { Header } from "./components/Header";
+import { ProtectedRoute } from "./pages/ProtectedRoutes";
+import { AuthProvider } from "./components/AuthContext";
+
+const AppLayout = () => {
+  const location = useLocation();
+
+  const isAuthPage =
+    location.pathname === "/signin" ||
+    location.pathname === "/signup";
 
   return (
     <>
-    <AuthProvider>
-      <BrowserRouter>
-      <Header/>
-        <Routes>
-          <Route path="/" element={<Navigate to="/blogs" />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/blogs" element={ 
+      {/* Header */}
+      {!isAuthPage && <Header />}
+
+      <Routes>
+        <Route path="/" element={<Navigate to="/blogs" />} />
+
+        {/* Auth */}
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
+
+        {/* Protected */}
+        <Route
+          path="/blogs"
+          element={
             <ProtectedRoute>
               <BlogFeed />
             </ProtectedRoute>
-          } />
-          <Route path="/blog/:id" element={<BlogPage />} />
-          <Route path="/write" element={<WriteBlog />} />
-          <Route path="/blog/:id/edit" element={<EditBlog />} />
-          <Route path="/my-blogs" element={
+          }
+        />
+
+        <Route path="/blog/:id" element={<BlogPage />} />
+
+        <Route
+          path="/write"
+          element={
+            <ProtectedRoute>
+              <WriteBlog />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/blog/:id/edit"
+          element={
+            <ProtectedRoute>
+              <EditBlog />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/my-blogs"
+          element={
             <ProtectedRoute>
               <MyBlogs />
             </ProtectedRoute>
-          }/>
+          }
+        />
+      </Routes>
 
-        </Routes>
-        <FloatingWriteButton/>
-      </BrowserRouter>
-      </AuthProvider>
+      {/* Floating write button */}
+      {!isAuthPage && <FloatingWriteButton />}
     </>
-  )
+  );
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <AppLayout />
+      </BrowserRouter>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;

@@ -42,7 +42,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 
       setToken(data.jwt);
 
-      navigate("/bulk");
+      navigate("/blogs");
     } catch (err: any) {
       setError(err.message);
     } finally {
